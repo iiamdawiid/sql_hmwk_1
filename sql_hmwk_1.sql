@@ -1,10 +1,10 @@
 -- 1. How many actors are there with the last name ‘Wahlberg’?
-SELECT first_name, last_name
+SELECT COUNT(last_name)
 FROM actor 
 WHERE last_name = 'Wahlberg';
 
 -- 2. How many payments were made between $3.99 and $5.99?
-SELECT amount
+SELECT COUNT(amount)
 FROM payment
 WHERE amount >= 3.99 AND amount <= 5.99;
 
@@ -40,9 +40,11 @@ WHERE last_name LIKE '%es';
 
 -- 9. How many payment amounts (4.99, 5.99, etc.) had a number of rentals above 250 for customers
 -- with ids between 380 and 430? (use group by and having > 250)
-
-
-
+SELECT customer_id, COUNT(rental_date)
+FROM rental
+WHERE customer_id BETWEEN 380 AND 430
+GROUP BY customer_id 
+HAVING COUNT(rental_date) > 250;
 
 -- 10. Within the film table, how many rating categories are there? And what rating has the most
 -- movies total?
